@@ -1,0 +1,56 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Sosi Hair Store</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <h1>Checkout</h1>
+    <div class="section">
+      <div class="row">
+        <div style="flex:1;min-width:260px">
+          <label>Full Name</label>
+          <input id="name" class="input" placeholder="Full name">
+        </div>
+        <div style="flex:1;min-width:200px">
+          <label>Phone</label>
+          <input id="phone" class="input" placeholder="09...">
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div style="flex:1;min-width:160px">
+          <label>City</label>
+          <input id="city" class="input" placeholder="Addis Ababa">
+        </div>
+        <div style="flex:2;min-width:260px">
+          <label>Address</label>
+          <input id="address" class="input" placeholder="Street, house no.">
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div style="flex:1;min-width:160px">
+          <label>Payment</label>
+          <select id="payment" class="input">
+            <option value="COD">Cash on Delivery</option>
+            <option value="BANK">Bank Transfer</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="place">Place Order</button>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../js/components.js"></script>
+  <script src="../js/checkout.js"></script>
+</body>
+</html>

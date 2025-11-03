@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Sosi Hair Store</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <h1>Shop</h1>
+    <div class="section">
+      <div class="row">
+        <div style="flex:1;min-width:180px">
+          <label>Search</label>
+          <input id="q" class="input" placeholder="Search products...">
+        </div>
+        <div style="flex:1;min-width:160px">
+          <label>Category</label>
+          <select id="category"></select>
+        </div>
+        <div style="flex:1;min-width:160px">
+          <label>Type</label>
+          <select id="type">
+            <option value="">All</option>
+            <option>human</option>
+            <option>synthetic</option>
+            <option>wig</option>
+            <option>extension</option>
+            <option>braid</option>
+          </select>
+        </div>
+        <div style="flex:1;min-width:120px">
+          <label>Min Price</label>
+          <input id="minPrice" type="number" class="input" placeholder="0">
+        </div>
+        <div style="flex:1;min-width:120px">
+          <label>Max Price</label>
+          <input id="maxPrice" type="number" class="input" placeholder="99999">
+        </div>
+        <div style="align-self:flex-end">
+          <button class="btn" id="apply">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid products" id="list"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../js/components.js"></script>
+  <script src="../js/shop.js"></script>
+</body>
+</html>

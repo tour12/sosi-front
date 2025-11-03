@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — New Product</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>New Product</h1>
+    <div class="section">
+      <label>Title</label>
+      <input id="title" class="input">
+      <div style="height:8px"></div>
+      <label>Type</label>
+      <select id="type" class="input">
+        <option>human</option><option>synthetic</option><option>wig</option><option>extension</option><option>braid</option>
+      </select>
+      <div style="height:8px"></div>
+      <label>Base Price</label>
+      <input id="price" class="input" type="number">
+      <div style="height:8px"></div>
+      <label>Description</label>
+      <input id="desc" class="input">
+      <div style="height:8px"></div>
+      <label>Image</label>
+      <input id="image" type="file" accept="image/*">
+      <div style="height:12px"></div>
+      <button class="btn" id="save">Save</button>
+    </div>
+  </main>
+  <script>
+    document.getElementById('save').addEventListener('click', async ()=>{
+      const fd = new FormData();
+      fd.append('title', document.getElementById('title').value);
+      fd.append('type', document.getElementById('type').value);
+      fd.append('base_price', document.getElementById('price').value);
+      fd.append('description', document.getElementById('desc').value);
+      const image = document.getElementById('image').files[0];
+      if (image) fd.append('image', image);
+  const r = await fetch('/api/admin/products', { method:'POST', credentials: 'include', body: fd });
+      const d = await r.json();
+      if (d.success) location.href='products.html'; else alert(d.message||'Failed');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Products</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Products</h1>
+    <div class="row">
+      <button class="btn" id="refresh">Refresh</button>
+      <a class="btn-outline" href="new-product.html">Add Product</a>
+    </div>
+    <div class="section">
+      <table class="table">
+        <thead><tr><th>Title</th><th>Type</th><th>Price</th><th>Actions</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    async function load(){
+      const r = await fetch('/api/admin/products', { credentials: 'include' });
+      const d = await r.json();
+      const rows = d.data.map(p=>`
+        <tr>
+          <td>${p.title}</td>
+          <td>${p.type}</td>
+          <td>ETB ${p.base_price}</td>
+          <td><a href="edit-product.html?id=${p.id}">Edit</a></td>
+        </tr>`).join('');
+      document.getElementById('rows').innerHTML = rows;
+    }
+    document.getElementById('refresh').addEventListener('click', load);
+    load();
+  </script>
+</body>
+</html>

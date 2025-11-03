@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — Sosi</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+<body>
+  <main class="container" style="max-width:420px;margin-top:40px">
+    <h1>Admin Login</h1>
+    <div class="section">
+      <label>Email</label>
+      <input id="email" class="input" placeholder="admin@sosi.com">
+      <div style="height:8px"></div>
+      <label>Password</label>
+      <input id="password" type="password" class="input" placeholder="••••••••">
+      <div style="height:12px"></div>
+      <button class="btn" id="login">Login</button>
+    </div>
+  </main>
+  <script>
+    document.getElementById('login').addEventListener('click', async ()=>{
+      const res = await fetch('/api/admin/login',{ 
+        method:'POST', credentials: 'include', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({email:document.getElementById('email').value, password:document.getElementById('password').value})
+      });
+      const data = await res.json();
+      if (data.success) location.href = '/sosi-hair-store/frontend/pages/admin/dashboard.html';
+      else alert(data.message || 'Failed');
+    });
+  </script>
+</body>
+</html>

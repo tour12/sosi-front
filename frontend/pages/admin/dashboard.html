@@ -1,0 +1,34 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Dashboard</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Dashboard</h1>
+    <div class="row">
+      <a class="btn-outline" href="products.html">Products</a>
+      <a class="btn-outline" href="orders.html">Orders</a>
+    </div>
+    <div class="section" id="cards">Loading...</div>
+  </main>
+  <script>
+    async function load(){
+      const r = await fetch('/api/admin/stats', { credentials: 'include' });
+      const d = await r.json();
+      if(!d.success){ document.getElementById('cards').innerHTML='Auth required'; return; }
+      document.getElementById('cards').innerHTML = `
+        <div class="row">
+          <div class="card p"><div class="p"><div class="badge">Today Sales</div><h2>ETB ${d.data.today_sales}</h2></div></div>
+          <div class="card p"><div class="p"><div class="badge">Pending Orders</div><h2>${d.data.pending}</h2></div></div>
+          <div class="card p"><div class="p"><div class="badge">Low Stock</div><h2>${d.data.low_stock}</h2></div></div>
+        </div>`;
+    }
+    load();
+  </script>
+</body>
+</html>

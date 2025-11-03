@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Orders</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Orders</h1>
+    <div class="section">
+      <table class="table">
+        <thead><tr><th>Order</th><th>Customer</th><th>Status</th><th>Total</th><th>Action</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    async function load(){
+      const r = await fetch('/api/admin/orders', { credentials: 'include' });
+      const d = await r.json();
+      const rows = d.data.map(o=>`
+        <tr>
+          <td>${o.order_code}</td>
+          <td>${o.customer_name} / ${o.phone}</td>
+          <td>${o.status}</td>
+          <td>ETB ${o.total}</td>
+          <td>
+            <select onchange="updateStatus(${o.id}, this.value)">
+              <option ${o.status==='PENDING'?'selected':''}>PENDING</option>
+              <option ${o.status==='CONFIRMED'?'selected':''}>CONFIRMED</option>
+              <option ${o.status==='SHIPPED'?'selected':''}>SHIPPED</option>
+              <option ${o.status==='DELIVERED'?'selected':''}>DELIVERED</option>
+              <option ${o.status==='CANCELLED'?'selected':''}>CANCELLED</option>
+            </select>
+          </td>
+        </tr>`).join('');
+      document.getElementById('rows').innerHTML = rows;
+    }
+    async function updateStatus(id, status){
+      await fetch('/api/admin/orders/'+id+'/status', {method:'PUT', credentials: 'include', headers:{'Content-Type':'application/json'}, body: JSON.stringify({status})});
+      load();
+    }
+    load();
+  </script>
+</body>
+</html>
