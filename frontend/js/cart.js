@@ -1,7 +1,5 @@
-// ✅ Define your backend URL at the very top
 const API_URL = 'http://72.61.91.30:3008';
 
-// Helper to fetch JSON
 async function fetchJSON(url, options) {
   options = options || {};
   if (!('credentials' in options)) options.credentials = 'include';
@@ -32,8 +30,10 @@ async function render() {
     return;
   }
 
-  // ✅ Fix: Use your backend API URL here
-  const { data } = await fetchJSON(`${API_URL}/api/cart?cartId=${encodeURIComponent(cartId)}`);
+  // 👇 IMPORTANT: full URL to your VPS, not relative
+  const { data } = await fetchJSON(
+    `${API_URL}/cart?cartId=${encodeURIComponent(cartId)}`
+  );
 
   if (!data || !data.items || !data.items.length) {
     el.innerHTML = '<div class="section">Your cart is empty.</div>';
