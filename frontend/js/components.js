@@ -24,4 +24,5 @@ if (footer) {
 // Base API URL
 window.API_BASE = (location.hostname === 'localhost')
   ? 'http://localhost:3008/api'
-  : '/api';
+  : 'http://72.61.91.30:3008/api';
+
