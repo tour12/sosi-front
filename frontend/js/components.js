@@ -7,9 +7,9 @@ if (header) {
       <a class="logo" href="/sosi-hair-store/frontend/index.html">Sosi Hair Store</a>
       <nav class="nav-links">
         <a href="/sosi-hair-store/frontend/pages/shop.html">Shop</a>
-        <a href="/sosi-hair-store/frontend/pages/cart.html">Cart</a>
-        <a href="/sosi-hair-store/frontend/pages/order.html">Track Order</a>
-        <a href="/sosi-hair-store/frontend/pages/admin/login.html">Admin</a>
+        <a href="/frontend/pages/cart.html">Cart</a>
+        <a href="/frontend/pages/order.html">Track Order</a>
+        <a href="/frontend/pages/admin/login.html">Admin</a>
       </nav>
     </div>`;
 }
